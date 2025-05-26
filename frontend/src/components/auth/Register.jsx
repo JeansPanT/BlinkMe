@@ -243,7 +243,7 @@ const Register = () => {
                 )}
               </button>
 
-              <div className="relative my-6">
+              {/* <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200"></div>
                 </div>
@@ -267,7 +267,7 @@ const Register = () => {
                   <div className="w-5 h-5 bg-gray-800 rounded"></div>
                   <span className="text-sm font-medium text-gray-700">GitHub</span>
                 </button>
-              </div>
+              </div> */}
 
               <div className="text-center pt-4">
                 <span className="text-gray-600">Already have an account? </span>
