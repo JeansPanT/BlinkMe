@@ -1,8 +1,8 @@
-# WhatsApp Clone 
-# MA 104 Project 1
+# BlinkME
+# IMCA 6th SEM - Minor Project
 
 ## Project Overview
-**WhatsApp Clone** is a full-stack messaging application that replicates the core functionalities of WhatsApp where each user can create their profile including their profile picture, status and bio. It supports real-time one-to-one and group messaging, media sharing via relative URLs. The project leverages both HTTP and WebSocket (STOMP) protocols to provide a robust, secure, and interactive chat experience.
+**BlinkME** is a full-stack messaging application that replicates the core functionalities of WhatsApp where each user can create their profile including their profile picture, status and bio. It supports real-time one-to-one and group messaging, media sharing via relative URLs. The project leverages both HTTP and WebSocket (STOMP) protocols to provide a robust, secure, and interactive chat experience.
 
 ## Features
 - **Authentication Using jwt**
@@ -43,9 +43,9 @@
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/s4kr3d-w0r1d/WhatsApp-Clone.git
+   git clone https://github.com/JeansPanT/BlinkMe.git
 
 ### Team Members
 
-1. Saksham Madan (24124040) -> Complete Backend including authorisation, chatting logics, user profile and blocking, media sharing, configurations.
-2. Vaishnavi (24124048) -> Complete Frontend including API integration between Frontend and Backend.
+1. Siddharth Kar (0810CA22DD57) -> Complete Backend including authorisation, chatting logics, user profile and blocking, media sharing, configurations.
+2. Megha More () -> Complete Frontend including API integration between Frontend and Backend.
