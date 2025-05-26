@@ -41,9 +41,8 @@ const SendMessage = ({ addMessage }) => {
         return <FileText className="w-4 h-4" />;
     }
   };
-
   return (
-    <div className="fixed bottom-0 left-[33.5%] w-[66.5%] bg-white/95 backdrop-blur-xl border-t border-gray-200/50 shadow-2xl z-50">
+    <div className="relative w-full bg-white/95 backdrop-blur-xl border-t border-gray-200/50 shadow-2xl z-10">
       {/* File preview */}
       {file && (
         <div className="px-6 py-3 border-b border-gray-200/50 bg-gradient-to-r from-blue-50/50 to-purple-50/50">

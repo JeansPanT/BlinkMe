@@ -10,7 +10,7 @@ import { MessageCircle, User, Shield, ArrowLeft } from "lucide-react";
 const ChatRoom = ({ selectedChat }) => {
   const navigate = useNavigate();
 
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState({});
   const [stompClient, setStompClient] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [youBlocked, setYouBlocked] = useState(false);
@@ -272,7 +272,7 @@ const ChatRoom = ({ selectedChat }) => {
       </div>
 
       {/* Chat header with BlinkMe styling */}
-      <div className="relative z-10 bg-white/80 backdrop-blur-xl border-b border-gray-200/50 shadow-lg">
+      <div className="relative z-10">
         <div className="flex items-center gap-4 p-4 max-w-7xl mx-auto">
           <button 
             onClick={() => navigate(-1)}
@@ -314,13 +314,13 @@ const ChatRoom = ({ selectedChat }) => {
             </div>
           </div>
         ) : (
-          <div className="animate-slide-up">
+          <div className="animate-slide-up ">
             <ChatBox 
               messages={chatMessages[recipientId] || []} 
               selectedChat={selectedChat}
               currentUserId={senderId}
             />
-            <div className="relative z-10">
+            <div className="relative z-auto">
               <SendMessage addMessage={sendMessage} />
             </div>
           </div>
