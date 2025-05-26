@@ -7,16 +7,32 @@ import MyProfile from "./pages/MyProfile";
 import ProfilePage from "./pages/ProfilePage";
 import PrivateRoute from "./routes/PrivateRoute";
 import ChatListSidebar from "./components/chat/ChatListSidebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AboutUs from "./pages/AboutUs";
 import BlockList from "./pages/BlockList";
 import CreateGroup from "./pages/CreateGroup";
 import Features from "./pages/Features";
 import Contact from "./pages/Contact";
+import Loader from "./components/Loader";
 
 function App() {
   const [selectedChat, setSelectedChat] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
+
+  useEffect(() => {
+    // Simulate app initialization
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Show loader on initial app load
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="flex h-screen">
