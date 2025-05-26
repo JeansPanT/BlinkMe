@@ -11,6 +11,8 @@ import { useState } from "react";
 import AboutUs from "./pages/AboutUs";
 import BlockList from "./pages/BlockList";
 import CreateGroup from "./pages/CreateGroup";
+import Features from "./pages/Features";
+import Contact from "./pages/Contact";
 
 function App() {
   const [selectedChat, setSelectedChat] = useState(null);
@@ -30,6 +32,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<MyProfile />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/blocklist" element={<BlockList />} />
 
