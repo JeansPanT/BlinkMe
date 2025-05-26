@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MessageCircle, Mail, Lock, Eye, EyeOff, ArrowLeft, Shield, Zap } from "lucide-react";
@@ -69,25 +68,25 @@ const Login = () => {
         <div className="absolute bottom-40 left-20 w-12 h-12 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full opacity-20 animate-bounce-slow"></div>
       </div>
 
-      <div className="relative z-40 p-6">
+      <div className="relative z-40 p-4 sm:p-6">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           <button
             onClick={() => handleNavigation("/")}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors group"
+            className="flex items-center gap-1 sm:gap-2 text-gray-600 hover:text-gray-900 transition-colors group"
           >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-medium">Back to Home</span>
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm sm:text-base font-medium">Back</span>
           </button>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
-                <MessageCircle className="w-6 h-6 text-white" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full animate-ping"></div>
+              <div className="absolute -top-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full animate-ping"></div>
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+              <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
                 BlinkMe
               </h1>
               <p className="text-xs text-gray-500 -mt-1">Secure & Fast</p>
@@ -96,79 +95,79 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="relative z-40 flex items-center justify-center min-h-[calc(100vh-120px)] px-6">
+      <div className="relative z-40 flex items-center justify-center min-h-[calc(100vh-100px)] px-4 sm:px-6">
         <div className="w-full max-w-md">
-          <div className="bg-white/80 backdrop-blur-xl border border-white/60 rounded-3xl p-8 shadow-2xl animate-slide-up">
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <Shield className="w-8 h-8 text-white" />
+          <div className="bg-white/80 backdrop-blur-xl border border-white/60 rounded-3xl p-5 sm:p-8 shadow-2xl animate-slide-up">
+            <div className="text-center mb-6 sm:mb-8">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h2>
-              <p className="text-gray-600">Sign in to continue your conversations</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">Welcome Back</h2>
+              <p className="text-sm sm:text-base text-gray-600">Sign in to continue your conversations</p>
             </div>
 
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-2xl p-4 mb-6 animate-shake">
-                <p className="text-red-600 text-center font-medium">{error}</p>
+              <div className="bg-red-50 border border-red-200 rounded-2xl p-3 sm:p-4 mb-5 sm:mb-6 animate-shake">
+                <p className="text-red-600 text-center text-sm sm:text-base font-medium">{error}</p>
               </div>
             )}
 
-            <form onSubmit={handleLogin} className="space-y-6">
+            <form onSubmit={handleLogin} className="space-y-4 sm:space-y-6">
               <div className="relative">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                   Email Address
                 </label>
                 <div className="relative">
                   <input
                     type="email"
-                    className="w-full px-4 py-4 pl-12 bg-gray-50/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500"
+                    className="w-full px-3 py-3 sm:px-4 sm:py-4 pl-10 sm:pl-12 bg-gray-50/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 text-sm sm:text-base"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
-                  <Mail className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
+                  <Mail className="absolute left-3 sm:left-4 top-3 sm:top-4 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                 </div>
               </div>
 
               <div className="relative">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1 sm:mb-2">
                   Password
                 </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="w-full px-4 py-4 pl-12 pr-12 bg-gray-50/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500"
+                    className="w-full px-3 py-3 sm:px-4 sm:py-4 pl-10 sm:pl-12 pr-10 sm:pr-12 bg-gray-50/50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 text-sm sm:text-base"
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  <Lock className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
+                  <Lock className="absolute left-3 sm:left-4 top-3 sm:top-4 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 transition-colors"
+                    className="absolute right-3 sm:right-4 top-3 sm:top-4 text-gray-400 hover:text-gray-600 transition-colors"
                   >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showPassword ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                   </button>
                 </div>
               </div>
 
               <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-1 sm:gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                     className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-gray-300"
                   />
-                  <span className="text-sm text-gray-600">Remember me</span>
+                  <span className="text-xs sm:text-sm text-gray-600">Remember me</span>
                 </label>
                 <button
                   type="button"
                   onClick={() => handleNavigation("#")}
-                  className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                  className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
                 >
                   Forgot password?
                 </button>
@@ -177,17 +176,17 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 relative overflow-hidden group"
+                className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white py-3 sm:py-4 rounded-2xl font-semibold text-base sm:text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 relative overflow-hidden group"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center gap-2">
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    <span>Signing in...</span>
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span className="text-sm sm:text-base">Signing in...</span>
                   </div>
                 ) : (
                   <>
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      <Zap className="w-5 h-5" />
+                    <span className="relative z-10 flex items-center justify-center gap-1 sm:gap-2">
+                      <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
                       Sign In
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -221,12 +220,12 @@ const Login = () => {
                 </button>
               </div> */}
 
-              <div className="text-center pt-4">
-                <span className="text-gray-600">Don't have an account? </span>
+              <div className="text-center pt-3 sm:pt-4">
+                <span className="text-xs sm:text-sm text-gray-600">Don't have an account? </span>
                 <button
                   type="button"
                   onClick={() => handleNavigation("/register")}
-                  className="text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+                  className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 font-semibold transition-colors"
                 >
                   Sign up for free
                 </button>
@@ -234,22 +233,22 @@ const Login = () => {
             </form>
           </div>
 
-          <div className="mt-8 grid grid-cols-3 gap-4 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className="mt-6 sm:mt-8 grid grid-cols-3 gap-3 sm:gap-4 animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-2">
-                <Zap className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-1 sm:mb-2">
+                <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <p className="text-xs text-gray-600 font-medium">Lightning Fast</p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mx-auto mb-2">
-                <Shield className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mx-auto mb-1 sm:mb-2">
+                <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <p className="text-xs text-gray-600 font-medium">Secure & Private</p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-2">
-                <MessageCircle className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-1 sm:mb-2">
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <p className="text-xs text-gray-600 font-medium">Real-time Chat</p>
             </div>
