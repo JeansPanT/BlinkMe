@@ -167,7 +167,7 @@ const Login = () => {
                 </label>
                 <button
                   type="button"
-                  onClick={() => handleNavigation("/forgot-password")}
+                  onClick={() => handleNavigation("#")}
                   className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
                 >
                   Forgot password?
@@ -195,16 +195,16 @@ const Login = () => {
                 )}
               </button>
 
-              <div className="relative my-6">
+              {/* <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
                   <span className="px-4 bg-white text-gray-500">or continue with</span>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="grid grid-cols-2 gap-4">
+              {/* <div className="grid grid-cols-2 gap-4">
                 <button
                   type="button"
                   className="flex items-center justify-center gap-2 py-3 px-4 border border-gray-200 rounded-2xl hover:bg-gray-50 transition-colors"
@@ -219,7 +219,7 @@ const Login = () => {
                   <div className="w-5 h-5 bg-gray-800 rounded"></div>
                   <span className="text-sm font-medium text-gray-700">GitHub</span>
                 </button>
-              </div>
+              </div> */}
 
               <div className="text-center pt-4">
                 <span className="text-gray-600">Don't have an account? </span>
