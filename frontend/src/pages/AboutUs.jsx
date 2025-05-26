@@ -45,7 +45,17 @@ const AboutUs = () => {
   const team = [
     {
       name: "Siddharth Kar",
-      role: "Project Lead & Developer",
+      role: "Project Lead & FullStack Developer",
+      bio: "IMCA Student at IPS Academy SOC"
+    },
+    {
+      name: "Megha More",
+      role: "Frontend & UI/UX Developer",
+      bio: "IMCA Student at IPS Academy SOC"
+    },
+    {
+      name: "Divyanshu Drivedi",
+      role: "DevOps & Database Specialist",
       bio: "IMCA Student at IPS Academy SOC"
     }
   ];
