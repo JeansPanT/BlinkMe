@@ -4,6 +4,7 @@ import { MessageCircle, Menu, X, User, Shield, LogOut, Settings, Bell } from "lu
 
 const Navbar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -80,12 +81,33 @@ const Navbar = () => {
             </div>
             
             {/* Right Side Actions */}
-            <div className="flex items-center gap-4">
-              {/* Notification Bell */}
-              <button className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors hover:scale-105 transform">
-                <Bell className="w-6 h-6 text-gray-600" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-red-400 to-pink-400 rounded-full"></div>
-              </button>
+            <div className="flex items-center gap-4">              {/* Notification Bell */}
+              <div className="relative">
+                <button 
+                  onClick={() => setShowNotifications(prev => !prev)} 
+                  className="relative p-2 hover:bg-gray-100 rounded-xl transition-colors hover:scale-105 transform"
+                >
+                  <Bell className="w-6 h-6 text-gray-600" />
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-red-400 to-pink-400 rounded-full"></div>
+                </button>
+                
+                {/* Notification Dropdown */}
+                {showNotifications && (
+                  <div className="absolute right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100/50 py-3 z-20 animate-slide-in">
+                    <div className="flex items-center justify-between px-4 pb-2 border-b border-gray-100">
+                      <h3 className="font-bold text-gray-800">Notifications</h3>
+                      <button className="text-xs text-blue-600">Mark all read</button>
+                    </div>
+                    <div className="p-6 flex flex-col items-center justify-center text-center">
+                      <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mb-3">
+                        <Bell className="w-8 h-8 text-blue-500" />
+                      </div>
+                      <h4 className="font-semibold text-gray-700 mb-1">No new notifications</h4>
+                      <p className="text-sm text-gray-500">You're all caught up!</p>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* Logout Button */}
               <button
@@ -172,7 +194,7 @@ const Navbar = () => {
               </button>
             </li>
 
-            <li>
+            {/* <li>
               <button className="w-full flex items-center gap-4 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-gray-50 hover:to-slate-50 transition-all duration-300 hover:scale-105 hover:shadow-lg group">
                 <div className="w-12 h-12 bg-gradient-to-r from-gray-100 to-slate-100 rounded-2xl flex items-center justify-center group-hover:from-gray-500 group-hover:to-slate-500 transition-all duration-300">
                   <Settings className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors" />
@@ -182,7 +204,7 @@ const Navbar = () => {
                   <div className="text-sm text-gray-500">App preferences</div>
                 </div>
               </button>
-            </li>
+            </li> */}
           </ul>
 
           {/* Sidebar Logout Button */}
@@ -222,23 +244,25 @@ const Navbar = () => {
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-500"
           onClick={() => setSidebarOpen(false)}
         />
-      )}
-
-      <style jsx>{`
+      )}      <style jsx>{`
         @keyframes slide-in {
           from { 
             opacity: 0; 
-            transform: translateX(-100%); 
+            transform: translateY(-10px); 
           }
           to { 
             opacity: 1; 
-            transform: translateX(0); 
+            transform: translateY(0); 
           }
         }
         
         @keyframes fade-in {
           from { opacity: 0; }
           to { opacity: 1; }
+        }
+
+        .animate-slide-in {
+          animation: slide-in 0.3s ease-out forwards;
         }
       `}</style>
     </>
