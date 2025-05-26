@@ -212,9 +212,8 @@ const StyledWrapper = styled.div`
     margin-left: -100px;
     top: 50%;
     margin-top: -100px;
-  }
-  .hex-brick {
-    background: #000000;
+  }  .hex-brick {
+    background: #8b5cf6;
     width: 30px;
     height: 17px;
     position: absolute;
@@ -526,15 +525,15 @@ const StyledWrapper = styled.div`
     }
   }  @keyframes fade00 {
     0% {
-      background: #333333;
+      background: #a855f7;
     }
 
     50% {
-      background: #000000;
+      background: #8b5cf6;
     }
 
     100% {
-      background: #666666;
+      background: #7c3aed;
     }
   }`;
 
