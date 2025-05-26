@@ -227,7 +227,6 @@ const ChatBox = ({
   websocketClient // WebSocket client for real-time communication
 }) => {  const chatRef = useRef(null);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [previewMedia, setPreviewMedia] = useState(null);
   
@@ -244,28 +243,8 @@ const ChatBox = ({
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
   }, [messages]);
-
   // Handle dropdown toggle
   const toggleDropdown = () => setShowDropdown(!showDropdown);
-
-  // Handle chat deletion
-  const handleDeleteClick = () => {
-    setShowDropdown(false);
-    setShowConfirmDelete(true);
-  };
-
-  // Confirm chat deletion
-  const confirmDelete = () => {
-    if (onRemoveChat && selectedChat) {
-      onRemoveChat(selectedChat.id);
-    }
-    setShowConfirmDelete(false);
-  };
-
-  // Cancel chat deletion
-  const cancelDelete = () => {
-    setShowConfirmDelete(false);
-  };
 
   // Handle message deletion for user
   const handleDeleteMessage = (messageId, userId) => {
@@ -286,54 +265,8 @@ const ChatBox = ({
       }));
     }
   };
-
-  // Mock messages for demo if none provided
-  const demoMessages = messages.length > 0 ? messages : [
-    {
-      id: 1,
-      senderId: "user1",
-      senderName: "Alice",
-      content: "Hey! How are you doing? 👋",
-      timestamp: new Date(Date.now() - 300000),
-      status: "READ",
-      encrypted: true,
-      mediaUrl: null,
-      mediaType: null
-    },
-    {
-      id: 2,
-      senderId: currentUserId,
-      senderName: "You",
-      content: "I'm doing great! Just working on some new features for BlinkMe. The backend integration is coming along nicely! 🚀",
-      timestamp: new Date(Date.now() - 240000),
-      status: "DELIVERED",
-      encrypted: true,
-      mediaUrl: null,
-      mediaType: null
-    },
-    {
-      id: 3,
-      senderId: "user1",
-      senderName: "Alice",
-      content: "That sounds awesome! Can't wait to see what you've built. The new design looks incredible! ✨",
-      timestamp: new Date(Date.now() - 180000),
-      status: "READ",
-      encrypted: true,
-      mediaUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center",
-      mediaType: "image"
-    },
-    {
-      id: 4,
-      senderId: currentUserId,
-      senderName: "You",
-      content: "Thanks! The new design looks amazing with all the gradients and animations. Real-time messaging works perfectly now! 💬",
-      timestamp: new Date(Date.now() - 60000),
-      status: "SENT",
-      encrypted: true,
-      mediaUrl: null,
-      mediaType: null
-    }
-  ];
+  // Use actual messages, no demo messages
+  const chatMessages = messages;
   return (
     <div className="relative h-[calc(100vh-220px)] bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 rounded-3xl border border-white/60 shadow-2xl overflow-hidden backdrop-blur-sm mt-16 mb-16">
       {/* Enhanced background pattern */}
@@ -347,10 +280,17 @@ const ChatBox = ({
       {/* Enhanced chat header */}
       <div className="sticky top-0 z-10 bg-white/90 backdrop-blur-xl border-b border-gray-200/30 p-4 shadow-sm">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
-                {selectedChat?.type === "group" ? (
+          <div className="flex items-center gap-4">            <div className="relative">              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
+                {selectedChat?.profilePictureUrl ? (
+                  <img 
+                    src={selectedChat.profilePictureUrl} 
+                    alt={selectedChat?.name} 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.src = "/default-avatar.jpg";
+                    }}
+                  />
+                ) : selectedChat?.type === "group" ? (
                   <Users className="w-6 h-6 text-white" />
                 ) : (
                   <User className="w-6 h-6 text-white" />
@@ -378,77 +318,66 @@ const ChatBox = ({
               </div>
             </div>
           </div>
-          
-          {/* Enhanced chat options dropdown */}
-          <div className="relative">
+          <div>
             <button 
               onClick={toggleDropdown} 
               className="p-3 rounded-full hover:bg-gray-100/80 transition-all duration-200 hover:shadow-md"
+              title="View profile"
             >
-              <MoreVertical className="w-5 h-5 text-gray-600" />
+              <User className="w-5 h-5 text-gray-600" />
             </button>
-            
-            {showDropdown && (
-              <div className="absolute right-0 mt-2 w-52 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100/50 py-3 z-20 animate-slide-in">
-                <button className="flex items-center gap-3 w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-100/80 transition-colors rounded-lg mx-2">
-                  <User className="w-4 h-4" />
-                  View contact
-                </button>
-                <button className="flex items-center gap-3 w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-100/80 transition-colors rounded-lg mx-2">
-                  <Image className="w-4 h-4" />
-                  Media & links
-                </button>
-                <div className="border-t border-gray-200/50 my-2 mx-4"></div>
-                <button 
-                  onClick={handleDeleteClick}
-                  className="flex items-center gap-3 w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors rounded-lg mx-2"
-                >
-                  <Trash2 className="w-4 h-4" />
-                  Delete chat
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </div>
-
-      {/* Enhanced confirmation modal */}
-      {showConfirmDelete && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-3xl p-8 shadow-2xl max-w-md w-full mx-4 animate-slide-up border border-gray-100">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 bg-red-100 rounded-2xl">
-                <AlertCircle className="w-8 h-8 text-red-600" />
+        {/* Centered user profile modal */}
+      {showDropdown && (
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
+          <div className="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100/50 p-6 m-4 animate-slide-up">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Profile</h2>
+              <button 
+                onClick={() => setShowDropdown(false)}
+                className="p-2 rounded-full hover:bg-gray-100/80 transition-all"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
+            
+            <div className="flex flex-col items-center mb-6">              <div className="w-28 h-28 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg mb-4 overflow-hidden transform transition-transform hover:scale-105 duration-300">
+                {selectedChat?.profilePictureUrl ? (
+                  <img 
+                    src={selectedChat.profilePictureUrl} 
+                    alt={selectedChat?.name} 
+                    className="w-full h-full object-cover rounded-full"
+                    onError={(e) => {
+                      e.target.src = "/default-avatar.jpg";
+                    }}
+                  />
+                ) : selectedChat?.type === "group" ? (
+                  <Users className="w-14 h-14 text-white" />
+                ) : (
+                  <User className="w-14 h-14 text-white" />
+                )}
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-800">Delete this chat?</h3>
-                <p className="text-gray-500 text-sm mt-1">This action cannot be undone</p>
+              <h3 className="font-bold text-xl text-gray-800">{selectedChat?.name || "User"}</h3>
+              <p className="text-sm text-gray-500 mt-1">{selectedChat?.email || "user@example.com"}</p>
+              <div className="flex items-center mt-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-1 animate-pulse"></div>
+                <span className="text-xs text-green-600">Online</span>
               </div>
             </div>
             
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              This will permanently delete all messages with <span className="font-semibold">{selectedChat?.name}</span>. 
-              All media and shared files will also be removed.
-            </p>
-            
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={cancelDelete}
-                className="px-6 py-3 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-100 transition-all duration-200 font-medium"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-lg hover:shadow-xl font-medium"
-              >
-                Delete Chat
-              </button>
+            <div className="border-t border-gray-200/70 pt-4 mt-2">
+              <h4 className="text-sm font-medium text-gray-600 mb-2">BIO</h4>
+              <p className="text-sm text-gray-700 bg-gray-50/50 p-4 rounded-xl border border-gray-100">
+                {selectedChat?.bio || "Hi there! I'm using BlinkMe for secure messaging."}
+              </p>
             </div>
           </div>
         </div>
-      )}      {/* Enhanced messages container */}
-      <div
+      )}
+      
+      {/* Enhanced messages container */}      <div
         ref={chatRef}
         className="flex flex-col-reverse h-full overflow-y-auto px-6 py-6 pb-16 space-y-4 scrollbar-thin scrollbar-thumb-blue-300/60 scrollbar-track-transparent"
         style={{
@@ -456,7 +385,7 @@ const ChatBox = ({
           scrollbarColor: '#93c5fd40 transparent'
         }}
       >
-        {demoMessages
+        {chatMessages.length > 0 && chatMessages
           .slice()
           .reverse()
           .map((message) => (
@@ -761,6 +690,11 @@ const ChatBox = ({
           }
         }
         
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(180deg); }
@@ -773,6 +707,14 @@ const ChatBox = ({
         
         @keyframes bounce-slow {
           0%, 100% { transform: translateY(0); }          50% { transform: translateY(-10px); }
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+        
+        .animate-slide-up {
+          animation: slide-up 0.4s ease-out;
         }
       `}</style>
     </div>
