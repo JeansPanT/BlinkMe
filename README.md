@@ -2,7 +2,7 @@
 # IMCA 6th SEM - Minor Project
 
 ## Project Overview
-**BlinkME** is a full-stack messaging application that replicates the core functionalities of WhatsApp where each user can create their profile including their profile picture, status and bio. It supports real-time one-to-one and group messaging, media sharing via relative URLs. The project leverages both HTTP and WebSocket (STOMP) protocols to provide a robust, secure, and interactive chat experience.
+**BlinkME** is a full-stack end-to-end encrypted messaging application that replicates the core functionalities of WhatsApp where each user can create their profile including their profile picture, status and bio. It supports real-time one-to-one and group messaging, media sharing via relative URLs. The project leverages both HTTP and WebSocket (STOMP) protocols to provide a robust, secure, and interactive chat experience.
 
 ## Features
 - **Authentication Using jwt**
@@ -47,5 +47,6 @@
 
 ### Team Members
 
-1. Siddharth Kar (0810CA22DD57) -> Complete Backend including authorisation, chatting logics, user profile and blocking, media sharing, configurations.
-2. Megha More () -> Complete Frontend including API integration between Frontend and Backend.
+1. Siddharth Kar (0810CA22DD57) -> Project Lead & Full Stack
+2. Megha More (0810CA22DD32) -> Frontend & UI UX
+3. Divyanshu Dwivedi (0810CA22DD12)-> DevOps & Database Specialist
